@@ -1,0 +1,20 @@
+# IDEs and Codeditors configs
+.DS_Store
+.idea
+.vscode
+
+# File types
+*.ai
+*.log
+*.pdf
+*.psd
+*.sublime*
+
+# Project sources
+node_modules/
+build/
+npm-debug.*
+
+# Lock-files
+pnpm-lock.yaml
+yarn.lock
