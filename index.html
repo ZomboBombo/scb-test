@@ -7,35 +7,87 @@
     <link rel="stylesheet" href="/src/sass/styles.scss" />
   </head>
   <body>
-    <h1>
-      Sovcombank
+    <main>
+      <h1 class="visually-hidden">Совкомбанк: «Альпака-календарь»</h1>
 
-      <svg aria-hidden="true">
-        <use href="/img/sprite.svg#html" />
-      </svg>
+      <section class="calendar">
+        <header class="calendar__head">
+          <button type="button" class="calendar__period-switch">
+            <span class="visually-hidden">Предыдущий месяц</span>
+            <svg class="calendar__period-switch-icn" aria-hidden="true">
+              <use href="/img/sprite.svg#icn-arrow" />
+            </svg>
+          </button>
 
-      <svg aria-hidden="true">
-        <use href="/img/sprite.svg#css" />
-      </svg>
+          <h2 class="calendar__preiod-name">Январь</h2>
 
-      <svg aria-hidden="true">
-        <use href="/img/sprite.svg#js" />
-      </svg>
-    </h1>
+          <button type="button" class="calendar__period-switch">
+            <span class="visually-hidden">Следующий месяц</span>
+            <svg class="calendar__period-switch-icn" aria-hidden="true">
+              <use href="/img/sprite.svg#icn-arrow" />
+            </svg>
+          </button>
+        </header>
 
-    <svg aria-hidden="true">
-      <use href="/img/sprite.svg#html" />
-    </svg>
+        <menu class="calendar__dates" id="calendar"></menu>
 
-    <svg aria-hidden="true">
-      <use href="/img/sprite.svg#css" />
-    </svg>
+        <!--
+          ПРИМЕЧАНИЯ РАЗРАБОТЧИКА:
+          ---
+          Вообще, я считаю, что фоновая картинка с альпакой
+          для календаря здесь – это декоративный элемент.
 
-    <svg aria-hidden="true">
-      <use href="/img/sprite.svg#js" />
-    </svg>
+          Потому нет большого смысла отображать его таким образом
+          – через <picture> с кучей разных настроек.
 
-    <div id="app"></div>
+          Его вполне можно разместить и через обычный `background-image`,
+          чтобы не засорять разметку декором.
+
+          В данном случае разметка сделана только с демонстрационной целью
+          в рамках тестового задания.
+
+          В реальной разработке я бы точно вынес эту декоративную картинку
+          из разметки и отображал бы через стили.
+        -->
+        <picture class="calendar__bg-pic">
+          <source type="image/webp" srcset="/img/bg/bg-alpaca.webp, /img/bg/bg-alpaca@2x.webp 2x" />
+          <source type="image/jpeg" srcset="/img/bg/bg-alpaca.jpg, /img/bg/bg-alpaca@2x.jpg 2x" />
+          <img width="320" height="284" src="/img/bg/bg-alpaca.jpg" alt="" />
+        </picture>
+
+        <!-- Темплейт разметки дефолтного элемента списка -->
+        <template id="calendar-date-temp">
+          <li class="calendar__date" data-js-date="container">
+            <label class="calendar__date-trigger" data-js-date="parent">
+              <input
+                type="checkbox"
+                class="visually-hidden"
+                name="undef-0"
+                data-js-date="trigger"
+                data-js-date-val="0"
+              />
+              <span data-js-date="text-val">0</span>
+            </label>
+          </li>
+        </template>
+
+        <!-- Темплейт разметки `next-month` элемента списка -->
+        <template id="calendar-date-next-month-temp">
+          <li class="calendar__date calendar__date--next-month" data-js-date="container">
+            <label class="calendar__date-trigger" data-js-date="parent">
+              <input
+                type="checkbox"
+                class="visually-hidden"
+                name="undef-0"
+                data-js-date="trigger"
+                data-js-date-val="0"
+              />
+              <span data-js-date="text-val">0</span>
+            </label>
+          </li>
+        </template>
+      </section>
+    </main>
 
     <script src="/src/main.js" type="module"></script>
   </body>
