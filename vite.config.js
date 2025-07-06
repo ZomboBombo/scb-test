@@ -6,7 +6,8 @@ import imageminMozjpeg from 'imagemin-mozjpeg'
 import imageminPngquant from 'imagemin-pngquant'
 
 // Custom Plugins
-import customStackSvgPlugin from './custom-vite-plugins/custom-stack-svg-plugin'
+import cvpStackSvg from './custom-vite-plugins/cvp-stack-svg'
+import cvpRemoveWebpsFromDevMode from './custom-vite-plugins/cvp-remove-webps-from-dev-mode'
 
 export default {
   base: './',
@@ -20,7 +21,6 @@ export default {
     emptyOutDir: true,
     sourcemap: false,
     rollupOptions: {
-      input: 'index.html',
       output: {
         assetFileNames: 'assets/[name].[ext]',
         entryFileNames: 'assets/[name].js',
@@ -41,10 +41,11 @@ export default {
     },
   },
   plugins: [
-    customStackSvgPlugin({
+    cvpStackSvg({
       pathToIcons: 'public/img/icons/',
       output: 'public/img/sprite.svg',
     }),
+    cvpRemoveWebpsFromDevMode(),
     viteImagemin({
       plugins: {
         jpg: imageminMozjpeg({ quality: 80 }),

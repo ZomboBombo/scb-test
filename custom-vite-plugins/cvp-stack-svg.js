@@ -1,14 +1,13 @@
 /**
- * 'Custom-Stack-Svg-Plugin'
+ * Custom Vite-plugin: `CVP-Stack-SVG`
  * ~~~
- * 
+ *
  * Custom plugin for the «Vite»:
- * used to create 'stack' SVG-sprite from project icons.
+ * used to create `stack` SVG-sprite from project icons.
  * ~~~
- * 
- * © Copyright: Sergey Novikov.
- * All rights reserved. 2025.
- * 
+ *
+ * © Copyright: Sergey Novikov. 2025.
+ *
 */
 
 import path from 'path'
@@ -19,7 +18,7 @@ import fastGlob from 'fast-glob'
  * @function generateStackSvg()
  * @description Custom Vite-plugin to generate the `Stack-SVG-Sprite`.
  * ~~~
- * 
+ *
  * @param {string} pathToIcons: Path to SVGs
  * @param {string} output: The output directory
  * @returns {Promise<void>}
@@ -57,16 +56,16 @@ async function generateStackSvg({ pathToIcons, output }) {
   await writeFile(output, spriteContent, 'utf-8')
 }
 
-export default function customStackSvgPlugin({ pathToIcons, output }) {
+export default function cvpStackSvg({ pathToIcons, output }) {
   return {
-    name: 'stack-svg-plugin',
+    name: 'cvp-stack-svg',
     buildStart: async () => {
       try {
         await generateStackSvg({ pathToIcons, output })
       } catch (catchedErr) {
         throw new Error(`
           =--=--=--=--=--=--=--=--=--=--=--=--=--=--=--=--=
-          ❌ Error occured inside 'stack-svg-plugin'.
+          ❌ Error occured inside 'cvp-stack-svg'.
 
           ${catchedErr}
           =--=--=--=--=--=--=--=--=--=--=--=--=--=--=--=--=
