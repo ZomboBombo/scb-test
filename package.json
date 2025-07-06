@@ -1,0 +1,25 @@
+{
+  "name": "scb-test",
+  "version": "1.0.0",
+  "repository": "git@github.com:ZomboBombo/scb-test.git",
+  "author": "Sergey Novikov <sergey.novikov.zb@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@vheemstra/vite-plugin-imagemin": "^2.2.0",
+    "autoprefixer": "^10.4.21",
+    "fast-glob": "^3.3.3",
+    "fs-extra": "^11.3.0",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^10.0.0",
+    "imagemin-webp": "^8.0.0",
+    "sass": "^1.89.2",
+    "vite": "^7.0.0"
+  }
+}
