@@ -1,23 +1,4 @@
-:root {
-  color-scheme: light dark;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
-html {
-  box-sizing: border-box;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: auto;
-  min-height: 100dvh;
-  font-family: monospace, system-ui;
-  padding: 0;
-}
+/* Core */
+@forward 'system/normalize';
+@forward 'system/fonts';
+@forward 'system/core';
