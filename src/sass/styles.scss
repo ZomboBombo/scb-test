@@ -1,4 +1,11 @@
 /* Core */
 @forward 'system/normalize';
 @forward 'system/fonts';
+@forward 'system/vars';
 @forward 'system/core';
+
+/* Base */
+@use 'base';
+
+/* Components */
+@use 'components';

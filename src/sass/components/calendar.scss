@@ -1,0 +1,222 @@
+@use '../system/mixins' as *;
+
+.calendar {
+  /*
+    Диапазон ширины контейнера
+  */
+  $wMin: 24rem;
+  $wBase: 32rem;
+  $wMax: 56rem;
+  /*
+    Рассчитываем размер блоков
+    исходя из ширины `.calendar`
+    (1cqi = 1% от ширины `.calendar`)
+  */
+  $wTriggerBase: 10cqi;
+  $wTriggerBg: calc($wTriggerBase + 0.4rem);
+  /*
+    Базовые отступы для контейнера
+  */
+  $containerGap: var(--gap-base);
+  $containerGapHalf: calc($containerGap / 2);
+
+  position: relative;
+  display: grid;
+  width: clamp($wMin, 100%, $wMax);
+  min-width: $wMin;
+  font: {
+    size: 1.2rem;
+    weight: 500;
+  }
+  line-height: 2;
+  color: var(--clr-base-white);
+  background-color: var(--clr-bg-primary);
+  border-radius: var(--brd-rad-base);
+  overflow: hidden;
+  box-shadow: var(--box-shad-base);
+  container-type: inline-size;
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: calc(var(--gap-base) * 2);
+    padding-inline: $containerGap;
+    padding-block-start: 1.2rem;
+  }
+
+  &__period-switch {
+    $t-props: color, background-color, opacity;
+    @include trans-config($t-props);
+    @include square(3.2rem);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    color: var(--clr-base-white);
+    background-color: var(--clr-base-transparent);
+    border: none;
+    border-radius: 0.8rem;
+    backdrop-filter: blur(0.4rem);
+
+    &:first-child {
+      rotate: 180deg;
+    }
+
+    &:where(:hover, :focus-visible) {
+      background-color: var(--clr-bg-trigger-hover);
+    }
+
+    &:active {
+      opacity: 0.75;
+    }
+
+    &:disabled {
+      opacity: 0.25;
+      pointer-events: none;
+    }
+  }
+
+  &__period-name {
+    font-size: inherit;
+    text-transform: uppercase;
+  }
+
+  &__dates {
+    @include reset-list;
+
+    isolation: isolate;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: $containerGap;
+    padding-block-start: 1.2rem;
+  }
+
+  &__date-item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-block: 0.4rem;
+
+    &::before,
+    &::after {
+      @include square($wTriggerBg);
+
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
+      z-index: -1;
+      display: block;
+      border-radius: 50%;
+      background-color: var(--clr-base-transparent);
+    }
+
+    &::after {
+      content: none;
+      border-radius: 0;
+    }
+
+    &.is-first::after {
+      content: '';
+      transform: translateX(50%);
+    }
+
+    &.is-last::after {
+      content: '';
+      transform: translateX(-50%);
+    }
+
+    &.is-between::before {
+      width: 200%;
+      border-radius: 0;
+    }
+
+    &:has(input[type='checkbox']:checked),
+    &--other-month:has(input[type='checkbox']:checked) {
+      opacity: 1;
+
+      &::before,
+      &::after {
+        background-color: var(--clr-bg-trigger-overlay);
+      }
+    }
+
+    &--other-month {
+      opacity: 0.5;
+
+      &:where(:hover, :focus-within) {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__date-item.is-between &__date-text::before {
+    content: none;
+  }
+
+  &__date-trigger {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+    padding: 0.2rem;
+  }
+
+  &__date-trigger:where(:hover, :focus-within) &__date-text::before {
+    background-color: var(--clr-bg-trigger-hover);
+  }
+
+  &__date-trigger:has(input[type='checkbox']:checked) &__date-text {
+    color: var(--clr-txt-trigger-active);
+
+    &::before {
+      outline-color: var(--clr-bg-trigger-outline);
+      background-color: var(--clr-bg-trigger-active);
+    }
+  }
+
+  &__date-text {
+    $t-props: color, opacity;
+    @include trans-config($t-props);
+    @include square($wTriggerBase);
+
+    position: relative;
+    isolation: isolate;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+    border-radius: 50%;
+
+    &::before {
+      $t-props: background-color, outline;
+      @include trans-config($t-props);
+
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      display: block;
+      border-radius: 50%;
+      outline: 0.1rem solid var(--clr-base-transparent);
+      outline-offset: -0.1rem;
+    }
+  }
+
+  &__bg-pic {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    display: block;
+
+    img {
+      @include pictured-image;
+    }
+  }
+}
