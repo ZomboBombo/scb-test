@@ -13,9 +13,9 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: auto;
+  height: 100%;
   min-height: 100dvh;
-  padding: 0;
+  padding: 0.8rem;
   font: {
     family: 'Roboto', sans-serif, system-ui;
     weight: 500;
