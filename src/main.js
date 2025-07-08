@@ -12,7 +12,7 @@
   }
 
   const $calendarDateTemp = document.getElementById('calendar-date-temp')
-  const $calendarDateNextMonthTemp = document.getElementById('calendar-date-next-month-temp')
+  const $calendarDateNextMonthTemp = document.getElementById('calendar-date-other-month-temp')
 
   let dateCounter = 1
 
