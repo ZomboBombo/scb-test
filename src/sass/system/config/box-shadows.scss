@@ -1,0 +1,9 @@
+@use 'sass:map';
+
+$theme-data-light: (
+  'base': 0 0 1.2rem 0.1rem hsl(0 0% 0% / 0.25)
+);
+
+$theme-data-dark: (
+  'base': 0 0 1.2rem 0.1rem hsl(0 0% 100% / 0.25)
+);
