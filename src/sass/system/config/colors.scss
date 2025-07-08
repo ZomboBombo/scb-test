@@ -1,0 +1,30 @@
+@use 'sass:map';
+
+$common: (
+  // [base]
+  'base-white': hsl(0 0% 100%),
+  'base-black': hsl(0 0% 0%),
+  'base-transparent': hsl(0 0% 0% / 0),
+  // [bg]
+  'bg-primary': hsl(225 10% 8% / 0.9)
+);
+
+$theme-data-light: (
+  // [bg]
+  'bg-trigger-hover': hsl(0 0% 100% / 0.2),
+  'bg-trigger-active': hsl(225 10% 8% / 0.3),
+  'bg-trigger-outline': hsl(225 10% 8% / 0.1),
+  'bg-trigger-overlay': hsl(0 0% 100%),
+  // [txt]
+  'txt-trigger-active': hsl(0 0% 0%)
+);
+
+$theme-data-dark: (
+  // [bg]
+  'bg-trigger-hover': hsl(202 62% 39% / 0.2),
+  'bg-trigger-active': hsl(225 10% 8% / 0.3),
+  'bg-trigger-outline': hsl(225 10% 8% / 0.1),
+  'bg-trigger-overlay': hsl(202 71% 52%),
+  // [txt]
+  'txt-trigger-active': hsl(0 0% 100%)
+);

@@ -7,23 +7,23 @@
     <link rel="stylesheet" href="/src/sass/styles.scss" />
   </head>
   <body>
-    <main>
+    <main class="site-main">
       <h1 class="visually-hidden">Совкомбанк: «Альпака-календарь»</h1>
 
       <section class="calendar">
         <header class="calendar__head">
           <button type="button" class="calendar__period-switch">
             <span class="visually-hidden">Предыдущий месяц</span>
-            <svg class="calendar__period-switch-icn" aria-hidden="true">
+            <svg width="8" height="12" class="calendar__period-switch-icn" aria-hidden="true">
               <use href="/img/sprite.svg#icn-arrow" />
             </svg>
           </button>
 
-          <h2 class="calendar__preiod-name">Январь</h2>
+          <h2 class="calendar__period-name">Январь</h2>
 
           <button type="button" class="calendar__period-switch">
             <span class="visually-hidden">Следующий месяц</span>
-            <svg class="calendar__period-switch-icn" aria-hidden="true">
+            <svg width="8" height="12" class="calendar__period-switch-icn" aria-hidden="true">
               <use href="/img/sprite.svg#icn-arrow" />
             </svg>
           </button>
@@ -57,7 +57,7 @@
 
         <!-- Темплейт разметки дефолтного элемента списка -->
         <template id="calendar-date-temp">
-          <li class="calendar__date" data-js-date="container">
+          <li class="calendar__date-item" data-js-date="container">
             <label class="calendar__date-trigger" data-js-date="parent">
               <input
                 type="checkbox"
@@ -66,14 +66,14 @@
                 data-js-date="trigger"
                 data-js-date-val="0"
               />
-              <span data-js-date="text-val">0</span>
+              <span class="calendar__date-text" data-js-date="text-val">0</span>
             </label>
           </li>
         </template>
 
-        <!-- Темплейт разметки `next-month` элемента списка -->
-        <template id="calendar-date-next-month-temp">
-          <li class="calendar__date calendar__date--next-month" data-js-date="container">
+        <!-- Темплейт разметки `other-month` элемента списка -->
+        <template id="calendar-date-other-month-temp">
+          <li class="calendar__date-item calendar__date-item--other-month" data-js-date="container">
             <label class="calendar__date-trigger" data-js-date="parent">
               <input
                 type="checkbox"
@@ -82,7 +82,7 @@
                 data-js-date="trigger"
                 data-js-date-val="0"
               />
-              <span data-js-date="text-val">0</span>
+              <span class="calendar__date-text" data-js-date="text-val">0</span>
             </label>
           </li>
         </template>

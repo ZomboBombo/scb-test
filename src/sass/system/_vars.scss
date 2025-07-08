@@ -1,0 +1,48 @@
+@use 'config/common-vars' as common-vars;
+@use 'config/box-shadows' as box-shadows;
+@use 'config/colors' as colors;
+
+:root {
+  // Gaps
+  @each $name, $val in common-vars.$gaps {
+    --gap-#{$name}: #{$val};
+  }
+
+  // Border-Rads
+  @each $name, $val in common-vars.$border-rads {
+    --brd-rad-#{$name}: #{$val};
+  }
+
+  // Box-Shadows: 'Theme-Data'
+  // => [theme-data-light]
+  @each $name, $val in box-shadows.$theme-data-light {
+    --box-shad-#{$name}: #{$val};
+  }
+
+  // Colors: 'Common'
+  @each $name, $val in colors.$common {
+    --clr-#{$name}: #{$val};
+  }
+
+  // Colors: 'Theme-Data'
+  // => [theme-data-light]
+  @each $name, $val in colors.$theme-data-light {
+    --clr-#{$name}: #{$val};
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    // Box-Shadows: 'Theme-Data'
+    // => [theme-data-dark]
+    @each $name, $val in box-shadows.$theme-data-dark {
+      --box-shad-#{$name}: #{$val};
+    }
+
+    // Colors: 'Theme-Data'
+    // => [theme-data-dark]
+    @each $name, $val in colors.$theme-data-dark {
+      --clr-#{$name}: #{$val};
+    }
+  }
+}

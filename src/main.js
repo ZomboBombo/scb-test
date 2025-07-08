@@ -2,7 +2,7 @@
  * ЛОГИКА НАПОЛНЕНИЯ
 */
 (() => {
-  const MAX_CALENDAR_PAGE_DATES_COUNT = 35
+  const MAX_CALENDAR_PAGE_DATES_COUNT = 36
   const MONTHS = ['jan', 'feb']
 
   const $calendar = document.getElementById('calendar')
@@ -12,7 +12,7 @@
   }
 
   const $calendarDateTemp = document.getElementById('calendar-date-temp')
-  const $calendarDateNextMonthTemp = document.getElementById('calendar-date-next-month-temp')
+  const $calendarDateNextMonthTemp = document.getElementById('calendar-date-other-month-temp')
 
   let dateCounter = 1
 
@@ -67,15 +67,24 @@
     const calendar = e.currentTarget
     const checkedDates = Array.from(calendar.querySelectorAll('[data-js-date="trigger"]:checked'))
 
-    if (!checkedDates.length) {
+    if (!checkedDates.length || checkedDates.length === 1) {
       return
     }
 
     if (checkedDates.length > 2) {
-      calendar.querySelectorAll('[data-js-date="trigger"]:checked').forEach((date) => date.checked = false)
+      calendar.querySelectorAll('[data-js-date="trigger"]:checked').forEach((date) => {
+        date.checked = false
+        date.closest('[data-js-date="container"]').classList.remove('is-first', 'is-between', 'is-last')
+      })
       currDateTrigger.checked = true
       return
     }
+
+    const firstDateContainer = checkedDates.at(0).closest('[data-js-date="container"]')
+    const lastDateContainer = checkedDates.at(-1).closest('[data-js-date="container"]')
+
+    firstDateContainer.classList.add('is-first')
+    lastDateContainer.classList.add('is-last')
 
     const getCheckedDateByIndex = (index) => {
       return Number(
@@ -85,12 +94,13 @@
 
     const [minCheckedDate, maxCheckedDate] = [getCheckedDateByIndex(0), getCheckedDateByIndex(-1)]
 
-    let dateCounter = minCheckedDate
+    let dateCounter = minCheckedDate + 1
 
     while (dateCounter < maxCheckedDate) {
       const dateBetween = calendar.querySelector(`[data-js-date-val="${dateCounter}"]`)
 
       dateBetween.checked = true
+      dateBetween.closest('[data-js-date="container"]').classList.add('is-between')
       dateCounter++
     }
   }

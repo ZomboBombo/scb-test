@@ -1,0 +1,16 @@
+$font-global-path: '/fonts/';
+$font-roboto: '#{$font-global-path}/roboto/';
+
+/* ===[ Шрифт «Roboto» ]=== */
+@font-face {
+  font: {
+    family: 'Roboto';
+    weight: 500;
+    style: normal;
+    display: swap;
+  }
+
+  src:
+    url('#{$font-roboto}Roboto-Medium.woff2') format('woff2'),
+    url('#{$font-roboto}Roboto-Medium.woff') format('woff');
+}
