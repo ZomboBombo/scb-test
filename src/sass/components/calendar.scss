@@ -46,6 +46,8 @@
   }
 
   &__period-switch {
+    -webkit-tap-highlight-color: var(--clr-base-transparent);
+
     $t-props: color, background-color, opacity;
     @include trans-config($t-props);
     @include square(3.2rem);
@@ -70,13 +72,23 @@
     }
 
     &:active {
-      opacity: 0.75;
+      background-color: var(--clr-bg-trigger-hover);
+      opacity: 0.5;
     }
 
     &:disabled {
       opacity: 0.25;
       pointer-events: none;
     }
+
+    @include touch-hover(
+      (
+        'background-color': 'var(--clr-bg-trigger-hover)'
+      ),
+      (
+        'background-color': 'unset'
+      )
+    );
   }
 
   &__period-name {
@@ -160,23 +172,46 @@
   }
 
   &__date-trigger {
+    -webkit-tap-highlight-color: var(--clr-base-transparent);
+
     display: flex;
     justify-content: center;
     align-items: center;
     width: max-content;
     padding: 0.2rem;
-  }
 
-  &__date-trigger:where(:hover, :focus-within) &__date-text::before {
-    background-color: var(--clr-bg-trigger-hover);
-  }
+    /*
+      Поведение при `:hover` и `:focus` эффектах.
+      ---
+      Меняется состояние внутреннего элемента (`.calendar__date-text`),
+      потому применён такой сложносоставной селектор
+    */
+    &:where(:hover, :focus-within) [class*='__date-text']::before {
+      background-color: var(--clr-bg-trigger-hover);
+    }
 
-  &__date-trigger:has(input[type='checkbox']:checked) &__date-text {
-    color: var(--clr-txt-trigger-active);
+    /*
+      Поведение при `:checked`.
+      ---
+      Меняется состояние внутреннего элемента (`.calendar__date-text`)
+      – так же, как и при интерактивных состояниях.
+    */
+    &:has(input[type='checkbox']:checked) [class*='__date-text'] {
+      color: var(--clr-txt-trigger-active);
 
-    &::before {
-      outline-color: var(--clr-bg-trigger-outline);
-      background-color: var(--clr-bg-trigger-active);
+      &::before {
+        outline-color: var(--clr-bg-trigger-outline);
+        background-color: var(--clr-bg-trigger-active);
+      }
+    }
+
+    /*
+      Сброс интерактивных состояний на тач-устройствах.
+    */
+    @media (hover: none) or (pointer: coarse) {
+      &:where(:hover, :focus-within) [class*='__date-text']::before {
+        background-color: unset;
+      }
     }
   }
 

@@ -36,3 +36,25 @@
     timing-function: $t-timing-func;
   }
 }
+
+/*
+  Для управления hover-эффектами
+  на тач-устройствах
+*/
+@mixin touch-hover($hovHovMap, $hovNonMap) {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @each $key, $val in $hovHovMap {
+        #{$key}: #{$val};
+      }
+    }
+  }
+
+  @media (hover: none) or (pointer: coarse) {
+    &:where(:hover, :active) {
+      @each $key, $val in $hovNonMap {
+        #{$key}: #{$val};
+      }
+    }
+  }
+}
