@@ -1,12 +1,10 @@
 import Calendar from '../classes/Calendar'
 
 export default function initCalendarDatesLogic() {
-  const $calendar = document.querySelector('[data-js-calendar]')
+  const $calendarBlocks = document.querySelectorAll('[data-js-calendar]')
 
-  if (!$calendar) {
-    return
-  }
-
-  const calendar = new Calendar($calendar)
-  calendar.init()
+  $calendarBlocks.forEach((calendarBlock) => {
+    const calendar = new Calendar(calendarBlock)
+    calendar.init()
+  })
 }

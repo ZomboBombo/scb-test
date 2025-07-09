@@ -1,11 +1,7 @@
 import fillCalendar from '../modules/fill-calendar'
 
 export default function initCalendarFill() {
-  const $calendar = document.querySelector('[data-js-calendar]')
+  const $calendarBlocks = document.querySelectorAll('[data-js-calendar]')
 
-  if (!$calendar) {
-    return
-  }
-
-  fillCalendar($calendar)
+  $calendarBlocks.forEach((calendarBlock) => fillCalendar(calendarBlock))
 }
