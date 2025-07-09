@@ -10,6 +10,56 @@
     <main class="site-main">
       <h1 class="visually-hidden">Совкомбанк: «Альпака-календарь»</h1>
 
+      <menu class="theme-switch" data-theme-switch="container">
+        <li class="theme-switch__item" data-theme-switch="parent">
+          <button
+            type="button"
+            class="theme-switch__trigger"
+            title="Светлая тема"
+            data-theme-switch="trigger"
+            data-theme-apply="light"
+          >
+            <span class="visually-hidden">Переключить на Светлую тему</span>
+
+            <svg width="48" height="48" class="theme-switch__trigger-icn" aria-hidden="true">
+              <use href="/img/sprite.svg#icn-theme-light" />
+            </svg>
+          </button>
+        </li>
+
+        <li class="theme-switch__item" data-theme-switch="parent">
+          <button
+            type="button"
+            class="theme-switch__trigger"
+            title="Автоопределение темы"
+            data-theme-switch="trigger"
+            data-theme-apply="auto"
+          >
+            <span class="visually-hidden">Включить автоопределние системной цветовой схемы</span>
+
+            <svg width="48" height="48" class="theme-switch__trigger-icn" aria-hidden="true">
+              <use href="/img/sprite.svg#icn-theme-auto" />
+            </svg>
+          </button>
+        </li>
+
+        <li class="theme-switch__item" data-theme-switch="parent">
+          <button
+            type="button"
+            class="theme-switch__trigger"
+            title="Тёмная тема"
+            data-theme-switch="trigger"
+            data-theme-apply="dark"
+          >
+            <span class="visually-hidden">Переключить на Тёмную тему</span>
+
+            <svg width="48" height="48" class="theme-switch__trigger-icn" aria-hidden="true">
+              <use href="/img/sprite.svg#icn-theme-dark" />
+            </svg>
+          </button>
+        </li>
+      </menu>
+
       <section class="calendar">
         <header class="calendar__head">
           <button type="button" class="calendar__period-switch">

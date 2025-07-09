@@ -31,8 +31,22 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
+html[data-theme='auto'] {
+  @media (prefers-color-scheme: light) {
+    // Box-Shadows: 'Theme-Data'
+    // => [theme-data-light]
+    @each $name, $val in box-shadows.$theme-data-light {
+      --box-shad-#{$name}: #{$val};
+    }
+
+    // Colors: 'Theme-Data'
+    // => [theme-data-light]
+    @each $name, $val in colors.$theme-data-light {
+      --clr-#{$name}: #{$val};
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
     // Box-Shadows: 'Theme-Data'
     // => [theme-data-dark]
     @each $name, $val in box-shadows.$theme-data-dark {
@@ -44,5 +58,33 @@
     @each $name, $val in colors.$theme-data-dark {
       --clr-#{$name}: #{$val};
     }
+  }
+}
+
+html[data-theme='dark'] {
+  // Box-Shadows: 'Theme-Data'
+  // => [theme-data-light]
+  @each $name, $val in box-shadows.$theme-data-light {
+    --box-shad-#{$name}: #{$val};
+  }
+
+  // Colors: 'Theme-Data'
+  // => [theme-data-light]
+  @each $name, $val in colors.$theme-data-light {
+    --clr-#{$name}: #{$val};
+  }
+}
+
+html[data-theme='dark'] {
+  // Box-Shadows: 'Theme-Data'
+  // => [theme-data-dark]
+  @each $name, $val in box-shadows.$theme-data-dark {
+    --box-shad-#{$name}: #{$val};
+  }
+
+  // Colors: 'Theme-Data'
+  // => [theme-data-dark]
+  @each $name, $val in colors.$theme-data-dark {
+    --clr-#{$name}: #{$val};
   }
 }
