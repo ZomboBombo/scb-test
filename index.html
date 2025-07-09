@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Совкомбанк: «Альпака-календарь»</title>
+    <script type="module" crossorigin src="./assets/index.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index.css">
+  </head>
+  <body>
+    <main class="site-main">
+      <h1 class="visually-hidden">Совкомбанк: «Альпака-календарь»</h1>
+
+      <menu class="theme-switch" data-theme-switch="container">
+        <li class="theme-switch__item" data-theme-switch="parent">
+          <button type="button" class="theme-switch__trigger" title="Светлая тема" data-theme-switch="trigger" data-theme-apply="light">
+            <span class="visually-hidden">Переключить на Светлую тему</span>
+
+            <svg width="48" height="48" class="theme-switch__trigger-icn" aria-hidden="true">
+              <use href="./img/sprite.svg#icn-theme-light" />
+            </svg>
+          </button>
+        </li>
+
+        <li class="theme-switch__item" data-theme-switch="parent">
+          <button type="button" class="theme-switch__trigger" title="Автоопределение темы" data-theme-switch="trigger" data-theme-apply="auto">
+            <span class="visually-hidden">Включить автоопределние системной цветовой схемы</span>
+
+            <svg width="48" height="48" class="theme-switch__trigger-icn" aria-hidden="true">
+              <use href="./img/sprite.svg#icn-theme-auto" />
+            </svg>
+          </button>
+        </li>
+
+        <li class="theme-switch__item" data-theme-switch="parent">
+          <button type="button" class="theme-switch__trigger" title="Тёмная тема" data-theme-switch="trigger" data-theme-apply="dark">
+            <span class="visually-hidden">Переключить на Тёмную тему</span>
+
+            <svg width="48" height="48" class="theme-switch__trigger-icn" aria-hidden="true">
+              <use href="./img/sprite.svg#icn-theme-dark" />
+            </svg>
+          </button>
+        </li>
+      </menu>
+
+      <section class="calendar">
+        <header class="calendar__head">
+          <button type="button" class="calendar__period-switch">
+            <span class="visually-hidden">Предыдущий месяц</span>
+            <svg width="8" height="12" class="calendar__period-switch-icn" aria-hidden="true">
+              <use href="./img/sprite.svg#icn-arrow" />
+            </svg>
+          </button>
+
+          <h2 class="calendar__period-name">Январь</h2>
+
+          <button type="button" class="calendar__period-switch">
+            <span class="visually-hidden">Следующий месяц</span>
+            <svg width="8" height="12" class="calendar__period-switch-icn" aria-hidden="true">
+              <use href="./img/sprite.svg#icn-arrow" />
+            </svg>
+          </button>
+        </header>
+
+        <menu class="calendar__dates" data-js-calendar></menu>
+
+        <!--
+          ПРИМЕЧАНИЯ РАЗРАБОТЧИКА:
+          ---
+          Вообще, я считаю, что фоновая картинка с альпакой
+          для календаря здесь – это декоративный элемент.
+
+          Потому нет большого смысла отображать его таким образом
+          – через <picture> с кучей разных настроек.
+
+          Его вполне можно разместить и через обычный `background-image`,
+          чтобы не засорять разметку декором.
+
+          В данном случае разметка сделана только с демонстрационной целью
+          в рамках тестового задания.
+
+          В реальной разработке я бы точно вынес эту декоративную картинку
+          из разметки и отображал бы через стили.
+        -->
+        <picture class="calendar__bg-pic">
+          <source type="image/webp" srcset="/img/bg/bg-alpaca.webp, /img/bg/bg-alpaca@2x.webp 2x" />
+          <source type="image/jpeg" srcset="img/bg/bg-alpaca.jpg, img/bg/bg-alpaca@2x.jpg 2x" />
+          <img width="320" height="284" src="./img/bg/bg-alpaca.jpg" alt="" />
+        </picture>
+
+        <!-- Темплейт разметки дефолтного элемента списка -->
+        <template id="calendar-date-temp">
+          <li class="calendar__date-item" data-js-date="container">
+            <label class="calendar__date-trigger" data-js-date="parent">
+              <input type="checkbox" class="visually-hidden" name="undef-0" data-js-date="trigger" data-js-date-val="0" />
+              <span class="calendar__date-text" data-js-date="text-val">0</span>
+            </label>
+          </li>
+        </template>
+
+        <!-- Темплейт разметки `other-month` элемента списка -->
+        <template id="calendar-date-other-month-temp">
+          <li class="calendar__date-item calendar__date-item--other-month" data-js-date="container">
+            <label class="calendar__date-trigger" data-js-date="parent">
+              <input type="checkbox" class="visually-hidden" name="undef-0" data-js-date="trigger" data-js-date-val="0" />
+              <span class="calendar__date-text" data-js-date="text-val">0</span>
+            </label>
+          </li>
+        </template>
+      </section>
+    </main>
+
+  </body>
+</html>
