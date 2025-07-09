@@ -45,7 +45,7 @@ async function generateStackSvg({ pathToIcons, output }) {
 
     // Remove redundant XML-code and other attrs from <svg>
     const cleanedSvg = svgContent
-      .replace(/<!DOCTYPE.*?>|(?:\s*(?:xml(?:ns)?(?::\w+)?|version|class|role|aria-[\w]+|width|height)=["'][^"']*["'])/g, '')
+      .replace(/<\?xml.*?>|<\!DOCTYPE.*?>|(?:\s*(?:xml(?:ns)?(?::\w+)?|version|class|role|aria-[\w]+|width|height)=["'][^"']*["'])/g, '')
       .replace(/<svg/, `<svg id="${fileName}"`)
 
     spriteContent += `${cleanedSvg}`
