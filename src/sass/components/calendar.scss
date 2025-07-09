@@ -171,8 +171,14 @@
     content: none;
   }
 
+  &__date-item.is-between &__date-trigger:where(:hover, :focus-within) {
+    background-color: var(--clr-bg-trigger-hover-inverse);
+  }
+
   &__date-trigger {
     -webkit-tap-highlight-color: var(--clr-base-transparent);
+
+    @include trans-config(background-color);
 
     display: flex;
     justify-content: center;
@@ -209,6 +215,7 @@
       Сброс интерактивных состояний на тач-устройствах.
     */
     @media (hover: none) or (pointer: coarse) {
+      &:has(input[type='checkbox']:checked):where(:hover, :focus-within),
       &:where(:hover, :focus-within) [class*='__date-text']::before {
         background-color: unset;
       }
@@ -216,7 +223,7 @@
   }
 
   &__date-text {
-    $t-props: color, opacity;
+    $t-props: color, background-color, opacity;
     @include trans-config($t-props);
     @include square($wTriggerBase);
 
