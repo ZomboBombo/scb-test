@@ -1,0 +1,77 @@
+@use '../system/mixins' as *;
+
+.theme-switch {
+  $theme-switch-animation-duration: 0.3s;
+
+  @include reset-list;
+
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  column-gap: var(--gap-base);
+  padding: var(--gap-base);
+  background-color: var(--clr-bg-primary);
+  border-radius: var(--brd-rad-base);
+  box-shadow: var(--box-shad-base);
+
+  &::before {
+    $t-props: translate, background-color;
+    @include trans-config($t-props, $theme-switch-animation-duration);
+
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    translate: var(--js-theme-switch-indicator-pos) -50%;
+    z-index: -1;
+    display: block;
+    width: var(--js-theme-switch-indicator-size);
+    height: var(--js-theme-switch-indicator-size);
+    background-color: var(--clr-bg-trigger-overlay);
+    border-radius: inherit;
+  }
+
+  &__trigger {
+    $t-props: color, background-color, opacity;
+    @include trans-config($t-props, $theme-switch-animation-duration);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--gap-base);
+    color: var(--clr-base-white);
+    background-color: var(--clr-base-transparent);
+    border: none;
+    border-radius: var(--brd-rad-base);
+
+    &.is-active {
+      color: var(--clr-txt-trigger-active);
+      pointer-events: none;
+    }
+
+    &:where(:hover, :focus-visible) {
+      background-color: var(--clr-bg-trigger-hover);
+    }
+
+    &:active {
+      opacity: 0.5;
+    }
+
+    &:disabled {
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    @include touch-hover(
+      (
+        'background-color': 'var(--clr-bg-trigger-hover)'
+      ),
+      (
+        'background-color': 'unset'
+      )
+    );
+  }
+}

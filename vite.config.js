@@ -42,7 +42,7 @@ export default {
   },
   plugins: [
     cvpStackSvg({
-      pathToIcons: 'public/img/icons/',
+      pathToIcons: 'src/icons/',
       output: 'public/img/sprite.svg',
     }),
     cvpRemoveWebpsFromDevMode(),
